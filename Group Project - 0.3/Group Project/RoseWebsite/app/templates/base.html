@@ -1,0 +1,51 @@
+<html>
+
+<style>
+
+body{ 
+    background-image: linear-gradient(to bottom, #D4EEFA, #fff); 
+}
+
+footer{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    bottom: 0px;
+    color: #000;
+    height: 10%;
+    text-align: center;
+}
+
+</style>
+
+    <head>
+        {% if title %}
+        <title>{{ title }} - ROSE</title>
+        {% else %}
+        <title>microblog</title>
+        {% endif %}
+    </head>
+    <body>
+        <div>
+            Rose:
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('login') }}">Login</a>
+        </div>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+
+<footer>
+    <p><b>© 2025 ROSE Foundation. Empowering Women • Eliminating Cervical Cancer.</b></p>
+</footer>
+</html>

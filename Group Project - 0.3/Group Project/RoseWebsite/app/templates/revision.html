@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="div-PredictionForm">
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.EventLocation.label }}<br>
+            {{ form.EventLocation(size=32) }}<br>
+            {% for error in form.EventLocation.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.EventBudget.label }}<br>
+            {{ form.EventBudget(size=32) }}<br>
+            {% for error in form.EventBudget.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.NumParticipents.label }}<br>
+            {{ form.NumParticipents(size=32) }}<br>
+            {% for error in form.NumParticipents.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.RevisionDescription.label }}<br>
+            {{ form.RevisionDescription(size=32) }}<br>
+            {% for error in form.RevisionDescription.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}

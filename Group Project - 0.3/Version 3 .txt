@@ -1,0 +1,9 @@
+Version 3 -
+
+Routes full sorted, Forms correctly placed and allocated
+CSS began, yet to incorporate standardised styling from research
+Login page mostly there, ALL forms need to be styled in base
+
+Revision Forms created and allocated
+Flashes created but need to be styled
+Pages flow linear now, with the exception being index
