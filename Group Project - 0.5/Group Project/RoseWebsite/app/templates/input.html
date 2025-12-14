@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .InputPageHeader{
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+
+    }
+
+    .div-InputListContainer{
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+        background-color: white;
+        border-radius: 3px;
+        border-color: red;
+        border: 1px;
+        border-style:groove;
+    }
+</style>
+
+<div class="InputPageHeader">
+    <h1>Input Page</h1>
+    <p>Please Select or Search for the prediction you are looking for.</p>
+</div>
+
+<div class="div-InputListContainer">
+    <div class="div-InputList">
+        <ul>
+            <li class="InputListElements">
+                #1
+                <hr>
+            </li>
+
+            <li class="InputListElements">
+                #1
+                <hr>
+            </li>
+
+            <li class="InputListElements">
+                #1
+                <hr>
+            </li>
+
+            <li class="InputListElements">
+                #1
+                <hr>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- THIS IS WHERE THE RTM (REAL TIME MONITORING) SHOULD GO BASED ON ACCOUNT LOGGED IN :0 -->
+
+{% endblock %}

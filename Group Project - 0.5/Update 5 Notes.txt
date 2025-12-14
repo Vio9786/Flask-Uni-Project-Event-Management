@@ -1,0 +1,8 @@
+Final Version of design documentation has been made and adjustments are being made to fit that
+Login page and prediction page are fully done
+Removed navigation on login page
+Removed Revisions page with a change in design
+Added Import Page Which allows people to look at predictions
+
+
+Fonts and Text colors need to be checked and finalised

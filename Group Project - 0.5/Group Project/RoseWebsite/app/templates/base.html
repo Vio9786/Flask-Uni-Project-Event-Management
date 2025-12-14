@@ -1,0 +1,190 @@
+<html>
+
+<style>
+
+body{ 
+    background-color: #E5E5E5;
+    margin: 0px;
+}
+
+.footer{
+    position:relative;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    bottom: 0px;
+    color: #000;
+    height: 6%;
+    text-align: center;
+    padding-top: 150px;
+}
+
+
+.logo{
+    display: flex;
+    align-items: center;
+    padding-left: 150px;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.nav-Container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #fff;
+  padding-right: 150px;
+}
+
+.nav-Container .nav-links {
+  float: left;
+  border-radius: 40px;
+}
+
+.nav-Container .nav-links a {
+  display: block;
+  color: #36919D;
+  text-align: center;
+  font-size: 17px;
+  padding: 12px 12px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+    padding-right: 15px;
+    border-color: #36919D;
+    border-radius: 3px;
+}
+
+.nav-Container .nav-links a:hover {
+  background-color: #36919D;
+  color: white;
+  border: 2px;
+  border-radius: 10px;
+}
+
+.nav{
+    background-color: #fff;
+    padding: 5px;
+    padding-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+}
+
+#password, #username, #EventName, #EventDate, #EventLocation, #EventBudget, #NumParticipents, #EventDescription{
+    width: 100%;
+    background-color: #E7E7E7;
+    color: black;
+    padding: 12px;
+    margin: 4px 0;
+    border-color: #DADADA;
+    border-radius: 2px;
+    border-style: solid;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+#submit{
+    width: 100%;
+    background-color: #003f6a;
+    color: white;
+    padding: 20px;
+    margin: 0px 0;
+    border-color: white;
+    border-radius: 6px;
+    border-style: solid;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#submit:hover{
+    background-color: #36919D;
+}
+
+label{
+    text-align: left;
+    font-size: 20px;
+}
+
+.Icon{
+    width: 26px;
+    height: 26px;
+    padding-right: 5px;
+}
+
+
+.Header{
+    text-align: center;
+    margin: auto;
+}
+
+</style>
+
+    <head>
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Rose</title>
+        {% endif %}
+    </head>
+    <body>
+    {% if title == "Sign In"%}
+    {% else %}
+        <div class="nav">
+            <div class="logo" style="float: left;">
+                        <img src="{{url_for('static', filename='ROSE-Foundation.png')}}" alt="ROSE Foundation logo"/>
+            </div>
+
+            <div>
+                <ul class="nav-Container"> 
+
+                    <li class="nav-links" style="float: right;">
+                        <a href="{{ url_for('outcome') }}">
+                        <img src="{{url_for('static', filename='ResultsPageIcon.png')}}" alt="Results Icon" class="Icon"/><b>Results</b>
+                        </a>
+                    </li>
+
+                    <li class="nav-links" style="float: right;">
+                        <a href="{{ url_for('prediction') }}">
+                        <img src="{{url_for('static', filename='PredictionPageIcon.png')}}" alt="Prediction Icon" class="Icon"/><b>Prediction</b>
+                        </a>
+                    </li>
+
+                    <li class="nav-links" style="float: right;">
+                        <a href="{{ url_for('input') }}">
+                        <img src="{{url_for('static', filename='InputPageIcon.png')}}" alt="Input Icon" class="Icon"/><b>Input</b>
+                        </a>
+                    </li>
+                
+                    <li class="nav-links" style="float: right;">
+                        <a href="{{ url_for('index') }}">
+                        <img src="{{url_for('static', filename='HomePageIcon.png')}}" alt="Home Icon" class="Icon"/><b>Home</b>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    {% endif %}
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+    <p class="footer"><b>© 2025 ROSE Foundation. Empowering Women • Eliminating Cervical Cancer.</b></p>
+</html>
