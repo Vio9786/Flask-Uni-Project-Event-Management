@@ -1,0 +1,14 @@
+Version Changes, all basic elements are there.
+Login form up to spec
+Content for Predictions and revision on the site
+A lot of general css added.
+added Icons to the nav bar
+Nav-bar changed to match designs
+
+
+
+Icons:
+https://www.flaticon.com/free-icon/contract_684831?term=paper&page=1&position=4&origin=search&related_id=684831
+https://www.flaticon.com/free-icon/home_2948025?term=home&page=1&position=24&origin=search&related_id=2948025
+https://www.flaticon.com/free-icon/upload_3097412?term=upload&page=1&position=1&origin=search&related_id=3097412
+https://www.flaticon.com/free-icon/trend_8384450?term=stock+graph&page=1&position=25&origin=search&related_id=8384450

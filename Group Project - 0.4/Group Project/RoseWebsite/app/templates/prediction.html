@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+    .div-PredictionForm{
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+        margin-top: 50px;
+        background-color: white;
+        border-radius: 10px;
+        border-color: red;
+        border: 1px;
+        border-style:groove;
+    }
+
+    .HeaderPrediction{
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+    }
+
+</style>
+
+<div class="HeaderPrediction">
+    <h1>Prediction Page</h1>
+    <p>This is where you can create event predictions.</p>
+</div>
+
+
+<div class="div-PredictionForm">
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.EventName.label }}<br>
+            {{ form.EventName(size=32) }}<br>
+            {% for error in form.EventName.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.EventDate.label }}<br>
+            {{ form.EventDate(size=32) }}<br>
+            {% for error in form.EventDate.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.EventLocation.label }}<br>
+            {{ form.EventLocation(size=32) }}<br>
+            {% for error in form.EventLocation.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.EventBudget.label }}<br>
+            {{ form.EventBudget(size=32) }}<br>
+            {% for error in form.EventBudget.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.NumParticipents.label }}<br>
+            {{ form.NumParticipents(size=32) }}<br>
+            {% for error in form.NumParticipents.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+            {{ form.EventDescription.label }}<br>
+            {{ form.EventDescription(size=32) }}<br>
+            {% for error in form.EventDescription.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}
