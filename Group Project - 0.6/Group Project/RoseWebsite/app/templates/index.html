@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .HomePageHeader{
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+        padding-bottom: 25%;
+    }
+</style>
+
+<div class="HomePageHeader">
+    <h1>Welcome to ROSE Dashboard</h1>
+    <p>Monitor event predictions, audit logs, and performance insights securely.</p>
+
+    {{user.username}}
+</div>
+
+<!-- THIS IS WHERE THE RTM (REAL TIME MONITORING) SHOULD GO BASED ON ACCOUNT LOGGED IN :0 -->
+
+{% endblock %}

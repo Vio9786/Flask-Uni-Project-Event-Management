@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+
+    .div-LoginForm{
+        margin: auto;
+        background-color: #FFF;
+        width: 350px;
+        height: 250px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        padding: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 80px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .img {
+        display: block;
+        margin: auto;
+        width: 50%;
+        padding-top: 200px;
+        padding-bottom: 1 0px;
+        padding-bottom: 10px;
+    }
+
+
+    .LoginBar {
+        height: 10px;
+        background-color: #003f6a; /* teal color */
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin: -20px -20px 20px -20px; /* extend to card edges */
+    }
+</style>
+
+<img src="{{url_for('static', filename='ROSE-FoundationLoginImage.png')}}" style="width: 400px;" alt="Rose Foundation Alt Logo" class="img"/>
+
+<div class="div-LoginForm">
+    <div class="LoginBar"></div>
+    <h1 class="Header">Login</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}<br>
+            {% for error in form.password.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+{% endblock %}

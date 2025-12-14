@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .Header{
+        width: 80%;
+        padding: 30px;
+    }
+
+    .InputTableContainer{
+        width: 70%;
+        margin: auto;
+        margin-top: 50px;
+        padding: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+        background-color: white;
+        border-radius: 10px;
+        border-color: red;
+        border: 1px;
+        border-style:groove;
+    }
+
+    .TopBarPrediction {
+        height: 10px;
+        background-color: #003f6a;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin: -30px -50px 20px -50px;
+    }
+
+    .InputTable{
+        width: 100%;
+    }
+
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #3c5463;
+    padding: 10px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    padding: 15px;
+}
+
+.table_component tr:nth-child(even) td {
+    background-color: #f3f4f8;
+    color: #3c5463;
+}
+
+.table_component tr:nth-child(odd) td {
+    background-color: #ffffff;
+    color: #3c5463;
+}
+
+form {
+    padding-top: 30px;
+}
+
+</style>
+
+<div class="InputTableContainer">
+<div class="TopBarPrediction"></div>
+
+<div class="Header">
+    <h1>Import Data</h1>
+</div>
+
+<div class="table_component" role="region" tabindex="0">
+<table>
+        <thead>
+            <tr>
+                <th>Ref No.</th>
+                <th>Event Name</th>
+                <th>Event Location</th>
+                <th>Created By</th>
+                <th>Date Created</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>00001</td>
+                <td>Wellness Screening</td>
+                <td>Kuala Lumpur</td>
+                <td>Joe Bloggs</td>
+                <td>11/09/2025</td>
+                <td>Completed</td>
+            </tr>
+            <tr>
+                <td>00002</td>
+                <td>Community Drive</td>
+                <td>Johor Bahru</td>
+                <td>Yur Manne</td>
+                <td>12/09/2025</td>
+                <td>Complete</td>
+            </tr>
+            <tr>
+                <td>00003</td>
+                <td>Wellness Screening</td>
+                <td>Kota Kinabalu</td>
+                <td>Ted Crilly</td>
+                <td>13/10/2025</td>
+                <td>Completed</td>
+            </tr>
+            <tr>
+                <td>00004</td>
+                <td>Community Drive</td>
+                <td>Johor Bahru</td>
+                <td>Joe Bloggs</td>
+                <td>15/10/2025</td>
+                <td>Cancelled</td>
+            </tr>
+            <tr>
+                <td>00005</td>
+                <td>Community Drive</td>
+                <td>Kota Kinabalu</td>
+                <td>Yur Manne</td>
+                <td>25/10/2025</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td>00006</td>
+                <td>Wellness Screening</td>
+                <td>Kuala Lumpur</td>
+                <td>Ted Crilly</td>
+                <td>01/11/2025</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td>00007</td>
+                <td>Wellness Screening</td>
+                <td>Johor Bahru</td>
+                <td>Joe Bloggs</td>
+                <td>03/11/2025</td>
+                <td>Pending</td>
+        </tr>
+    </tbody>
+</table>
+</div>
+<form><p>{{ form.submit() }}</p></form>
+</div>
+
+<!-- THIS IS WHERE THE RTM (REAL TIME MONITORING) SHOULD GO BASED ON ACCOUNT LOGGED IN :0 -->
+
+{% endblock %}
