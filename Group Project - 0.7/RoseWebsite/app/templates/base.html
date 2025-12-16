@@ -1,0 +1,261 @@
+<html>
+
+<style>
+
+body{ 
+    background-color: #E5E5E5;
+    margin: 0px;
+}
+
+.footer{
+    position:relative;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    bottom: 0px;
+    color: #000;
+    height: 6%;
+    text-align: center;
+    padding-top: 150px;
+}
+
+
+.logo{
+    display: flex;
+    align-items: center;
+    padding-left: 150px;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.nav-Container {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  background-color: #fff;
+  padding-right: 150px;
+}
+
+.nav-Container .nav-links {
+  float: left;
+  border-radius: 40px;
+}
+
+.nav-Container .nav-links a {
+  display: block;
+  color: #000;
+  text-align: center;
+  font-size: 17px;
+  padding: 12px 12px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-Container .nav-links .LogoutButton:hover {
+  background-color: #003f6a;
+  color: white;
+  border: 2px;
+  border-radius: 10px;
+}
+
+.Icons:hover {
+    filter: brightness(0) invert(1);
+}
+
+.nav{
+    background-color: #fff;
+    padding: 5px;
+    padding-bottom: 7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 75px;
+    position: relative;
+    z-index: 10;
+}
+
+#password, #username, #EventName, #EventDate, #EventLocation, #EventBudget, #NumParticipents, #EventType, #MarketingTypes, #AttendanceGoal{
+    width: 100%;
+    background-color: #ebe8e8;
+    color: black;
+    padding: 12px;
+    margin: 4px 0;
+    border-radius: 2px;
+    border-style: solid;
+    border-right: #DADADA;
+    border-top: #DADADA;
+    border-left: #eeeaea;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#EventType #EventDate{
+    display: inline-block;
+}
+
+#submit{
+    width: 100%;
+    background-color: #003f6a;
+    color: white;
+    padding: 20px;
+    margin: 0px 0;
+    border-color: white;
+    border-radius: 6px;
+    border-style: solid;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#submit:hover{
+    background-color: #003150;
+}
+
+label{
+    text-align: left;
+    font-size: 20px;
+}
+
+.Icon{
+    width: 26px;
+    height: 26px;
+    padding-right: 5px;
+}
+
+
+.Header{
+    text-align: center;
+    margin: auto;
+}
+
+.NavDropButton {
+  color: #000000;
+  background-color: white;
+  padding: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: lightgray;
+  border-style: solid;
+  border-radius: 4px;
+  border: 0px;
+    display: flex;
+    align-items: center;
+}
+
+.NavDropDown {
+  position: relative;
+  display: inline-block; 
+  
+}
+
+.NavDropContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  color: #000;
+  min-width: 200px;
+  z-index: 20;
+}
+
+.NavDropContent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.NavDropContent a:hover {
+  background-color: lightgrey;
+}
+
+.NavDropDown:hover .NavDropContent {
+  display: block;
+}
+
+.NavDropDown:hover .NavDropButton {
+  background-color: white;
+  color: #000;
+}
+
+.NavLanguage {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;              
+  padding: 0px;
+  z-index: 1;
+}
+
+
+
+</style>
+
+    <head>
+        {% if title %}
+        <title>{{ title }}</title>
+        {% else %}
+        <title>Rose</title>
+        {% endif %}
+    </head>
+    <body>
+        <div class="nav">
+            <div class="logo" style="float: left;">
+                        <img src="{{url_for('static', filename='ROSE-Foundation.png')}}" alt="ROSE Foundation logo"/>
+            </div>
+
+            <div>
+                <ul class="nav-Container"> 
+                    {% if title == "Sign In"%}
+                        <li class="nav-links">
+                            <div class="NavLanguage">
+                                <div class="NavDropDown">
+                                    <button class="NavDropButton">
+                                        <img src="{{url_for('static', filename='LanguageIcon.png')}}" alt="LanguageIcon" class="Icon"/>
+                                    </button>
+                                
+                                    <div class="NavDropContent">
+                                        <a href="#Malay">Malay</a>
+                                        <a href="#Mandarin">Mandarin</a>
+                                        <a href="#Tamil">Tamil</a>
+                                        <a href="#English">English</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>   
+
+                    {% else %}
+                    <li class="nav-links" style="float: right;">
+                        <a href="{{ url_for('logout') }}" class="LogoutButton">
+                        <img src="{{url_for('static', filename='LogoutIcon.png')}}" alt="Logout Icon" class="Icon"/><b>Logout</b>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+        
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+    <p class="footer"><b>© 2025 ROSE Foundation. Empowering Women • Eliminating Cervical Cancer.</b></p>
+</html>

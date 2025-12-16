@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+    .Header{
+        width: 80%;
+        padding: 30px;
+    }
+
+    .InputTableContainer{
+        width: 60%;
+        margin: auto;
+        margin-top: 50px;
+        padding: 30px;
+        padding-left: 50px;
+        padding-right: 50px;
+        background-color: white;
+        border-radius: 10px;
+        border-color: red;
+        border: 1px;
+        border-style:groove;
+    }
+
+    .TopBarWide {
+        height: 10px;
+        background-color: #003f6a;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin: -30px -50px 20px -50px;
+    }
+
+    .InputTable{
+        width: 100%;
+    }
+
+.table_component {
+    overflow: auto;
+    width: 100%;
+}
+
+.table_component table {
+    border: 1px solid #dededf;
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.table_component caption {
+    caption-side: top;
+    text-align: left;
+}
+
+.table_component th {
+    border: 1px solid #dededf;
+    background-color: #eceff1;
+    color: #3c5463;
+    padding: 10px;
+}
+
+.table_component td {
+    border: 1px solid #dededf;
+    padding: 15px;
+}
+
+.table_component tr:nth-child(even) td {
+    background-color: #f3f4f8;
+    color: #3c5463;
+}
+
+.table_component tr:nth-child(odd) td {
+    background-color: #ffffff;
+    color: #3c5463;
+}
+
+.Create {
+    padding-top: 30px;
+}
+
+.BottomButtonsInput{
+    width: 100%;
+
+}
+
+.inner{
+    display: inline-block;
+}
+
+.ImportButtonRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;              
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+.ImportButton {
+  background-color: #003c66;
+  color: #fff;
+  text-decoration: none;           
+  padding: 12px 32px;
+  border-radius: 4px;
+  font-size: 16px;
+  display: inline-block;     
+  white-space: nowrap;
+  cursor: pointer;
+  width: 15%;
+  text-align: center;
+}
+
+.ImportButton:hover {
+  background-color: #003150;
+}
+
+.FilterBar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    padding: 12px;
+    border-radius: 6px;
+}
+
+.FilterSelect {
+    background-color: #ebe8e8;
+    color: black;
+    padding: 12px;
+    margin: 4px 0;
+    border-radius: 2px;
+    border-style: solid;
+    border-right: #DADADA;
+    border-top: #DADADA;
+    border-left: #eeeaea;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.FilterSearch {
+    margin-left: auto;
+    position: relative;
+}
+
+.FilterSearch input {
+    width: 320px;
+    background-color: #ebe8e8;
+    color: black;
+    padding: 12px;
+    margin: 4px 0;
+    border-radius: 2px;
+    border-style: solid;
+    border-right: #DADADA;
+    border-top: #DADADA;
+    border-left: #eeeaea;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    input[type='radio']:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #d1d3d1;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+    input[type='radio']:checked:after {
+        width: 15px;
+        height: 15px;
+        border-radius: 15px;
+        top: -2px;
+        left: -1px;
+        position: relative;
+        background-color: #003150;
+        content: '';
+        display: inline-block;
+        visibility: visible;
+        border: 2px solid white;
+    }
+
+</style>
+
+<div class="InputTableContainer">
+<div class="TopBarWide"></div>
+
+<div class="Header">
+    <h1>Import Data</h1>
+</div>
+
+<div class="FilterBar">
+    <select class="FilterSelect">
+        <option>Created by:</option>
+        <option>Joe Bloggs</option>
+        <option>Yur Manne</option>
+        <option>Ted Crilly</option>
+    </select>
+
+    <select class="FilterSelect">
+        <option>Date:</option>
+        <option>Latest</option>
+        <option>Oldest</option>
+    </select>
+
+    <select class="FilterSelect">
+        <option>Location:</option>
+        <option>Kuala Lumpur</option>
+        <option>Johor Bahru</option>
+        <option>Kota Kinabalu</option>
+    </select>
+
+    <!-- SEARCH -->
+    <div class="FilterSearch">
+        <input type="text" class="ImportInput" placeholder="Search by Name or reference number..."/>
+    </div>
+</div>
+
+<div class="table_component" role="region" tabindex="0">
+<form>
+<table>
+        <thead>
+            <tr>
+                <th> </th>
+                <th>Ref No.</th>
+                <th>Event Name</th>
+                <th>Event Location</th>
+                <th>Created By</th>
+                <th>Date Created</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="1"> </td>
+                <td>00001</td>
+                <td>Wellness Screening</td>
+                <td>Kuala Lumpur</td>
+                <td>Joe Bloggs</td>
+                <td>11/09/2025</td>
+                <td>Completed</td>
+            </tr>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="2"> </td>
+                <td>00002</td>
+                <td>Community Drive</td>
+                <td>Johor Bahru</td>
+                <td>Yur Manne</td>
+                <td>12/09/2025</td>
+                <td>Completed</td>
+            </tr>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="3"> </td>
+                <td>00003</td>
+                <td>Wellness Screening</td>
+                <td>Kota Kinabalu</td>
+                <td>Ted Crilly</td>
+                <td>13/10/2025</td>
+                <td>Completed</td>
+            </tr>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="4"> </td>
+                <td>00004</td>
+                <td>Community Drive</td>
+                <td>Johor Bahru</td>
+                <td>Joe Bloggs</td>
+                <td>15/10/2025</td>
+                <td>Cancelled</td>
+            </tr>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="5"> </td>
+                <td>00005</td>
+                <td>Community Drive</td>
+                <td>Kota Kinabalu</td>
+                <td>Yur Manne</td>
+                <td>25/10/2025</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="6"> </td>
+                <td>00006</td>
+                <td>Wellness Screening</td>
+                <td>Kuala Lumpur</td>
+                <td>Ted Crilly</td>
+                <td>01/11/2025</td>
+                <td>Active</td>
+            </tr>
+            <tr>
+                <td> <input type="radio" id="css" name="Import Option" value="7"> </td>
+                <td>00007</td>
+                <td>Wellness Screening</td>
+                <td>Johor Bahru</td>
+                <td>Joe Bloggs</td>
+                <td>03/11/2025</td>
+                <td>Pending</td>
+        </tr>
+    </tbody>
+</table>
+</form>
+</div>
+    <div class="ImportButtonRow">
+        <a href="{{ url_for('Import') }}" class="ImportButton">Clear filters</a>
+        <a href="{{ url_for('outcome') }}" class="ImportButton">Import</a>
+        {% if Perms == 'Admin1' %}
+        <a href="{{ url_for('prediction') }}" class="ImportButton">Create</a>
+        {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}

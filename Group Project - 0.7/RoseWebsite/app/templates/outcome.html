@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    .div-ResultsForm{
+        width: 70%;
+        margin: auto;
+        padding: 30px 50px;
+        margin-top: 50px;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .TopBarWide {
+        height: 10px;
+        background-color: #003f6a;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin: -30px -50px 20px -50px;
+    }
+
+    .div-BackArrow {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .div-BackArrow a {
+        text-decoration: none;
+        font-size: 20px;
+        color: inherit;
+    }
+
+    .div-BackArrow img {
+        width: 20px;
+    }
+
+    .result-card {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 4px 4px 4px 6px rgba(0,0,0,0.12);
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .BreakdownCard {
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 4px 4px 4px 6px rgba(0,0,0,0.12);
+        display: block;
+        font-size: 16px;
+        gap: 12px;
+    }
+
+    .result-small {
+        width: 260px;
+        text-align: center;
+    }
+
+    .Large {
+        width: 480px;
+    }
+
+    .result-title {
+        font-size: 1.15rem;
+        font-weight: 600;
+        color: #003A50;
+    }
+
+    .result-value {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #004B63;
+    }
+
+    .result-sub {
+        font-size: 0.9rem;
+        color: #6b6b6b;
+    }
+
+    .breakdown-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #003A50;
+    }
+
+    .results-row {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 25px 0;
+    }
+    
+    .ResultsButton {
+        width: 200px;
+        padding: 20px;
+        display: inline-block;
+        text-align: center;
+        border-radius: 6px;
+        border-style: solid;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #Save {
+        background-color: #003f6a;
+        color: white;
+        border-color: white;
+    }
+
+    #Revise {
+        background-color: #ffffff;
+        color: #003f6a;
+        border-color: #003f6a;
+    }
+
+.OutcomeButtonRow {
+    display: flex;
+    justify-content: flex-end; /* ✅ pushes buttons to the right */
+    gap: 15px;
+    margin-top: 30px;
+    padding-right: 125px;
+}
+
+
+</style>
+
+<div class="div-ResultsForm">
+    <div class="TopBarWide"></div>
+
+    <div class="div-BackArrow">
+        <a href="{{ url_for('Import') }}">
+            <img src="{{url_for('static', filename='BacKArrowIcon.png')}}">
+            <span>Import</span>
+        </a>
+    </div>
+
+    <h2 class="Header">Results</h2>
+
+    <!-- SMALL CARDS -->
+    <div class="results-row">
+        <div class="result-card result-small">
+            <div class="result-title">Predicted Attendance:</div>
+            <div class="result-value">104 Attendees</div>
+            <div class="result-sub">± 5 Attendees</div>
+        </div>
+
+        <div class="result-card result-small">
+            <div class="result-title">Predicted Budget:</div>
+            <div class="result-value">RM 10,578</div>
+            <div class="result-sub">± RM 500</div>
+        </div>
+
+        <div class="result-card result-small">
+            <div class="result-title">Efficiency Score:</div>
+            <div class="result-value">76/100</div>
+            <div class="result-sub">Optimised</div>
+        </div>
+    </div>
+
+    <!-- LARGE CARDS -->
+    <div class="results-row">
+
+        <!-- EVENT BREAKDOWN -->
+        <div class="BreakdownCard Large">
+            <div class="breakdown-title">Event Breakdown:</div>
+            <p class="BreakdownDetails">Event Name: WS Kuala - 12/09/25</p>
+            <p class="BreakdownDetails">Date: 13/09/2025</p>
+            <p class="BreakdownDetails">Event Type: Wellness Screening</p>
+            <p class="BreakdownDetails">Efficiency Details:</p>
+            <ul>
+                <li>Expensive location selected</li>
+                <li>Radio marketing effective</li>
+                <li>Saturday selected</li>
+                <li>Low staffing</li>
+            </ul>
+        </div>
+
+        <!-- BUDGET BREAKDOWN -->
+        <div class="result-card Large">
+            <div class="breakdown-title">Budget Breakdown:</div>
+
+            <ul>
+                <li>Venue 45%</li>
+                <li>Marketing 35%</li>
+                <li>Staff 10%</li>
+                <li>Logistics 10%</li>
+            </ul>
+
+            <!-- PIE CHART -->
+            <div style="width:260px; margin:auto;">
+                <canvas id="budgetChart"></canvas>
+            </div>
+        </div>
+    </div>
+    {% if Perms == 'Admin1' %}
+    <div class="OutcomeButtonRow">
+        <a href="{{ url_for('prediction') }}" class="ResultsButton" id="Revise">Revise Output</a>
+        <a href="{{ url_for('Import') }}" class="ResultsButton" id="Save">Save Prediction</a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    const ctx = document.getElementById('budgetChart');
+
+    new Chart(ctx, {type: 'pie', data: {
+            labels: ['Venue', 'Marketing', 'Staff', 'Logistics'],
+            datasets: [{ data: [45, 35, 10, 10], 
+            backgroundColor: ['#2cb1a1','#d1d5db','#000000','#3b82f6']}]
+        },
+
+        options: {responsive: true, plugins: {
+        legend: {position: 'bottom'}}
+        }
+    });
+</script>
+
+{% endblock %}

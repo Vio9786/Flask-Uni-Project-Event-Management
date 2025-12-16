@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+
+
+    .PredictionFormContainer{
+        width: 30%;
+        margin: auto;
+        padding: 30px;
+        margin-top: 3%;
+        padding-left: 50px;
+        padding-right: 50px;
+        background-color: white;
+        border-radius: 10px;
+        border-color: none;
+        border: 1px;
+        border-style:groove;
+    }
+
+    @media (max-width: 1200px){
+        .PredictionFormContainer{
+            width: 80%;
+            margin-top: 5%;
+            margin-left: auto;
+        }
+
+        .PredictionFormElements{
+            width: 100%;
+        }
+    }
+
+    .PredictionFormElements {
+        width: 80%;
+        margin: auto;
+    }
+
+    .HeaderPrediction{
+        width: 80%;
+        margin: auto;
+        padding: 30px;
+    }
+
+
+.TopBarWide {
+    height: 10px;
+    background-color: #003f6a;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    margin: -30px -50px 20px -50px;
+}
+
+.predictionCreationRow {
+    display: flex;
+    gap: 40px;
+}
+
+
+.predictionCreationRow p{
+    flex: 1;
+}
+
+
+</style>
+
+<div class="PredictionFormContainer">
+    <div class="TopBarWide"></div>
+
+    <div class="PredictionFormElements">
+
+        <h1 class="Header">Prediction Creation</h1>
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.EventName.label }}<br>
+                {{ form.EventName(size=32) }}<br>
+                {% for error in form.EventName.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <p>
+                {{ form.EventLocation.label }}<br>
+                {{ form.EventLocation(size=32) }}<br>
+                {% for error in form.EventLocation.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </p>
+
+            <div class="PredictionCreationRow">
+                <p>
+                    {{ form.EventDate.label }}<br>
+                    {{ form.EventDate(size=32) }}<br>
+                    {% for error in form.EventDate.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+
+                <p>
+                    {{ form.EventType.label }}<br>
+                    {{ form.EventType}}<br>
+                    {% for error in form.EventType.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+
+            <div class="PredictionCreationRow">
+                <p>
+                    {{ form.EventBudget.label }}<br>
+                    {{ form.EventBudget(size=32) }}<br>
+                    {% for error in form.EventBudget.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            
+
+                <p>
+                    {{ form.AttendanceGoal.label }}<br>
+                    {{ form.AttendanceGoal(size=32) }}<br>
+                    {% for error in form.AttendanceGoal.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </p>
+            </div>
+
+            <div class="SelectWrapper">
+                {{ form.MarketingTypes.label }}<br>
+                {{ form.MarketingTypes}}<br>
+                {% for error in form.MarketingTypes.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+            </div>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </div>
+</div>
+{% endblock %}

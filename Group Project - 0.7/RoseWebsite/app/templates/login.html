@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+
+
+    .div-LoginForm{
+        margin: auto;
+        background-color: #FFF;
+        width: 350px;
+        height: 250px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        padding: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 7%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+
+@media (max-width: 1600px){
+    .div-LoginForm{
+        margin: auto;
+        background-color: #FFF;
+        width: 350px;
+        height: 350px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        padding: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 7%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    }
+@media (max-width: 800px){
+    .div-LoginForm{
+        margin: auto;
+        background-color: #FFF;
+        width: 350px;
+        height: 350px;
+        border: 1px solid lightgray;
+        border-radius: 10px;
+        padding: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 7%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+    }    
+
+    .img {
+        display: block;
+        margin: auto;
+        width: 50%;
+        padding-top: 150px;
+        padding-bottom: 10px;
+    }
+
+    .LoginBar {
+        height: 10px;
+        background-color: #003f6a;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        margin: -20px -20px 20px -20px;
+    }
+
+
+    .password-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+
+
+.toggle-password {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+}
+</style>
+
+<img src="{{url_for('static', filename='ROSE-FoundationLoginImage.png')}}" style="width: 400px;" alt="Rose Foundation Alt Logo" class="img"/>
+
+<div class="div-LoginForm">
+    <div class="LoginBar"></div>
+    <h1 class="Header">Login</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        
+        <p>
+        {{ form.password.label }}<br>
+
+        <div class="password-wrapper">
+            {{ form.password(size=32, id="password") }}
+            <span class="toggle-password" onclick="togglePassword()">👁️</span>
+        </div>
+
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+
+        <p>{{ form.submit() }}</p>
+    </form>
+</div>
+
+<script>
+function togglePassword() {
+    const password = document.getElementById("password");
+    password.type = password.type === "password" ? "text" : "password";
+}
+</script>
+{% endblock %}
