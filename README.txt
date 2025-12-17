@@ -69,7 +69,7 @@ RoseWebsite/
 ├── config.py
 ├── RoseWebsite.py
 ├── Developer Modules.py
-└── Requirements.txt
+└── requirements.txt
 
 
 ###############################################
